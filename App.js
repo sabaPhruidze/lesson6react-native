@@ -20,6 +20,9 @@ export default function App() {
     { name: "lit", id: 10 },
   ]);
 
+  const pressHandler = (id) => {
+    console.log(id);
+  };
   return (
     <View style={styles.container}>
       <FlatList
@@ -27,7 +30,10 @@ export default function App() {
         keyExtractor={(item) => item.id} // this will become the key
         data={people}
         renderItem={({ item }) => (
-          <TouchableOpacity>
+          <TouchableOpacity
+            style={styles.border}
+            onPress={() => pressHandler(item.id)}
+          >
             <Text style={styles.item}>{item.name}</Text>
           </TouchableOpacity>
         )}
@@ -50,5 +56,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginHorizontal: 10,
     marginTop: 24,
+  },
+  border: {
+    borderWidth: 1,
+    borderColor: "green",
   },
 });
